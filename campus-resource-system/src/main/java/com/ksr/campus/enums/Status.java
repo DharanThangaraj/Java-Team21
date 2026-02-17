@@ -1,7 +1,8 @@
-package main.java.com.ksr.campus.enums;
+package com.ksr.campus.enums;
 
 public enum Status {
-    PENDING,
+    PENDING_FACULTY,
+    PENDING_ADMIN,
     APPROVED,
     REJECTED
 }

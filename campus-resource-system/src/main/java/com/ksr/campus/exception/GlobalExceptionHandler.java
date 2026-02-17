@@ -1,4 +1,4 @@
-package main.java.com.ksr.campus.exception;
+package com.ksr.campus.exception;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

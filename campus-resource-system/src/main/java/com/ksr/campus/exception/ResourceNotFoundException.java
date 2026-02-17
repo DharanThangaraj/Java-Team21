@@ -1,4 +1,4 @@
-package main.java.com.ksr.campus.exception;
+package com.ksr.campus.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

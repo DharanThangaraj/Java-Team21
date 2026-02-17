@@ -1,4 +1,4 @@
-package main.java.com.ksr.campus.config;
+package com.ksr.campus.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
