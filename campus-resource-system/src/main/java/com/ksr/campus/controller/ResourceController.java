@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.ksr.campus.service.ResourceService;
 import com.ksr.campus.entity.Resource;
+import com.ksr.campus.dto.ResourceStatsDTO;
 import java.util.List;
 
 @RestController
@@ -25,5 +26,10 @@ public class ResourceController {
     @GetMapping
     public List<Resource> getAllResources() {
         return resourceService.getAllResources();
+    }
+
+    @GetMapping("/stats")
+    public ResourceStatsDTO getStats() {
+        return resourceService.getResourceStats();
     }
 }

@@ -9,4 +9,5 @@ public class BookingRequestDTO {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String purpose;
+    private int participants;
 }

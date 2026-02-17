@@ -13,4 +13,6 @@ public class BookingResponseDTO {
     private LocalDateTime endTime;
     private String purpose;
     private Status status;
+    private String rejectionReason;
+    private int participants;
 }

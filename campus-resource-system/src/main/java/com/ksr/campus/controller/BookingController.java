@@ -22,7 +22,8 @@ public class BookingController {
     private BookingService bookingService;
 
     @PostMapping
-    public BookingResponseDTO createBooking(@RequestParam Long userId, @RequestBody BookingRequestDTO bookingRequestDTO) {
+    public BookingResponseDTO createBooking(@RequestParam Long userId,
+            @RequestBody BookingRequestDTO bookingRequestDTO) {
         return bookingService.createBooking(userId, bookingRequestDTO);
     }
 
@@ -37,8 +38,8 @@ public class BookingController {
     }
 
     @PutMapping("/{id}/reject")
-    public BookingResponseDTO rejectBooking(@PathVariable Long id) {
-        return bookingService.rejectBooking(id);
+    public BookingResponseDTO rejectBooking(@PathVariable Long id, @RequestParam String reason) {
+        return bookingService.rejectBooking(id, reason);
     }
 
     @GetMapping

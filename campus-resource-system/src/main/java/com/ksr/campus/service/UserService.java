@@ -6,6 +6,8 @@ import com.ksr.campus.repository.UserRepository;
 import com.ksr.campus.entity.User;
 import com.ksr.campus.dto.UserRequestDTO;
 import com.ksr.campus.dto.UserResponseDTO;
+import com.ksr.campus.dto.LoginRequestDTO;
+import com.ksr.campus.exception.ResourceNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +29,15 @@ public class UserService {
 
     public List<UserResponseDTO> getAllUsers() {
         return userRepository.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
+    }
+
+    public UserResponseDTO login(LoginRequestDTO loginRequest) {
+        String trimmedEmail = loginRequest.getEmail().trim();
+        User user = userRepository.findByEmailIgnoreCase(trimmedEmail)
+                .filter(u -> u.getPassword().equals(loginRequest.getPassword()))
+                .orElseThrow(() -> new ResourceNotFoundException("Invalid email or password"));
+
+        return mapToDTO(user);
     }
 
     private UserResponseDTO mapToDTO(User user) {

@@ -32,4 +32,7 @@ public class Booking {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    private String rejectionReason;
+    private int participants;
+
 }
