@@ -11,38 +11,70 @@ function Navbar() {
     navigate("/login");
   };
 
-  const roleBg = {
-    ADMIN: "bg-red-600",
-    FACULTY: "bg-indigo-600",
-    STUDENT: "bg-emerald-600"
+  const roleColors = {
+    ADMIN: "from-red-600 to-rose-700",
+    FACULTY: "from-indigo-600 to-violet-700",
+    STUDENT: "from-emerald-600 to-teal-700"
   };
 
-  const currentBg = roleBg[user?.role] || "bg-indigo-600";
+  const gradient = roleColors[user?.role] || "from-indigo-600 to-violet-700";
 
   return (
-    <div className={`${currentBg} text-white p-4 flex justify-between items-center shadow-lg transition-colors duration-500`}>
-      <Link to="/" className="text-xl font-bold">Campus Resource</Link>
-      <div className="space-x-6 flex items-center">
-        <Link to="/" className="hover:text-gray-200">Dashboard</Link>
-        {user?.role === 'ADMIN' && <Link to="/users" className="hover:text-gray-200">Users</Link>}
-        <Link to="/booking" className="hover:text-gray-200">Booking</Link>
-
-        {user ? (
-          <div className="flex items-center space-x-4 border-l pl-6">
-            <NotificationDropdown user={user} />
-            <span className="text-sm font-medium">{user.name} ({user.role})</span>
-            <button
-              onClick={handleLogout}
-              className="bg-white text-indigo-900 border border-white hover:bg-transparent hover:text-white px-3 py-1 rounded text-sm font-bold transition"
-            >
-              Logout
-            </button>
+    <nav className={`sticky top-0 z-50 bg-gradient-to-r ${gradient} text-white shadow-2xl`}>
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-indigo-100">
+        <Link to="/" className="flex items-center space-x-2 group">
+          <div className="bg-white/20 p-2 rounded-lg group-hover:bg-white/30 transition-all">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
           </div>
-        ) : (
-          <Link to="/login" className="bg-white text-indigo-600 hover:bg-transparent hover:text-white border border-white px-3 py-1 rounded text-sm font-bold transition">Login</Link>
-        )}
+          <span className="text-xl font-bold tracking-tight text-white">CampusRes</span>
+        </Link>
+
+        <div className="hidden md:flex items-center space-x-1">
+          <NavLink to="/" label="Dashboard" />
+          {user?.role === 'ADMIN' && <NavLink to="/users" label="Users" />}
+          <NavLink to="/booking" label="Bookings" />
+          <NavLink to="/resources" label="Resources" />
+        </div>
+
+        <div className="flex items-center space-x-4">
+          {user ? (
+            <div className="flex items-center space-x-4 border-l border-white/20 pl-6">
+              <NotificationDropdown user={user} />
+              <div className="flex flex-col items-end mr-2">
+                <span className="text-xs font-semibold uppercase tracking-wider opacity-80">{user.role}</span>
+                <span className="text-sm font-medium text-white">{user.name}</span>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="bg-white/10 hover:bg-white/20 text-white px-4 py-1.5 rounded-full text-sm font-bold border border-white/30 transition-all active:scale-95"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="bg-white text-indigo-700 hover:bg-indigo-50 px-6 py-2 rounded-full text-sm font-bold shadow-lg transition-all"
+            >
+              Login
+            </Link>
+          )}
+        </div>
       </div>
-    </div>
+    </nav>
+  );
+}
+
+function NavLink({ to, label }) {
+  return (
+    <Link
+      to={to}
+      className="px-4 py-2 rounded-lg hover:bg-white/10 hover:text-white transition-all font-medium"
+    >
+      {label}
+    </Link>
   );
 }
 

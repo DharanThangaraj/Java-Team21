@@ -164,7 +164,9 @@ public class BookingService {
         BookingResponseDTO dto = new BookingResponseDTO();
         dto.setId(booking.getId());
         dto.setUserId(booking.getUser().getId());
+        dto.setUserName(booking.getUser().getName());
         dto.setResourceId(booking.getResource().getId());
+        dto.setResourceName(booking.getResource().getName());
         dto.setStartTime(booking.getStartTime());
         dto.setEndTime(booking.getEndTime());
         dto.setPurpose(booking.getPurpose());

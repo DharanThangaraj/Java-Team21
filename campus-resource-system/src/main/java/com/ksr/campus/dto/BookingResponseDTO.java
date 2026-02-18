@@ -8,7 +8,9 @@ import com.ksr.campus.enums.Status;
 public class BookingResponseDTO {
     private Long id;
     private Long userId;
+    private String userName;
     private Long resourceId;
+    private String resourceName;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private String purpose;

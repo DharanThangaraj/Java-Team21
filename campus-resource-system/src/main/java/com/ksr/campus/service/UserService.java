@@ -18,6 +18,9 @@ public class UserService {
     private UserRepository userRepository;
 
     public UserResponseDTO createUser(UserRequestDTO userRequestDTO) {
+        if (userRequestDTO.getPassword() == null || userRequestDTO.getPassword().length() <= 6) {
+            throw new IllegalArgumentException("Password must be more than 6 characters");
+        }
         User user = new User();
         user.setName(userRequestDTO.getName());
         user.setEmail(userRequestDTO.getEmail());

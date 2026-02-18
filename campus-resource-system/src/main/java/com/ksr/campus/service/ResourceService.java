@@ -31,6 +31,15 @@ public class ResourceService {
         return resourceRepository.save(resource);
     }
 
+    public Resource updateResource(Long id, Resource resourceDetails) {
+        Resource resource = resourceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Resource not found"));
+        resource.setName(resourceDetails.getName());
+        resource.setType(resourceDetails.getType());
+        resource.setCapacity(resourceDetails.getCapacity());
+        return resourceRepository.save(resource);
+    }
+
     public List<Resource> getAllResources() {
         return resourceRepository.findAll();
     }
